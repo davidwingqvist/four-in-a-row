@@ -14,6 +14,20 @@ class Board {
         this.opponent = new Opponent(this);
         this.isOver = false;
 
+        this.renderDifficultySelection = (
+
+            <div className='selectionArea'>
+
+                <ul className='selectionButtons'>
+                    <button className='buttonSelected' id='easyButton' onClick={() => this.onDifficultSelect(0)}>Easy</button>
+                    <button className='button' id='mediumButton' onClick={() => this.onDifficultSelect(1)}>Medium</button>
+                    <button className='button' id='hardButton' onClick={() => this.onDifficultSelect(2)}>Hard</button>
+                </ul>
+
+            </div>
+
+        )
+
         this.renderBoard = (
 
             <div className='gameArea' id='gameArea'>
@@ -96,17 +110,94 @@ class Board {
         }
     }
 
+    onDifficultSelect(diff)
+    {
+        this.opponent.difficulty = diff;
+        if(diff === 0)
+        {
+            document.getElementById('easyButton').style.backgroundColor = 'white';
+            document.getElementById('mediumButton').style.backgroundColor = 'black';
+            document.getElementById('hardButton').style.backgroundColor = 'black';
+        }
+        else if(diff === 1)
+        {
+            document.getElementById('easyButton').style.backgroundColor = 'black';
+            document.getElementById('mediumButton').style.backgroundColor = 'white';
+            document.getElementById('hardButton').style.backgroundColor = 'black';
+        }
+        else if(diff === 2)
+        {
+            document.getElementById('easyButton').style.backgroundColor = 'black';
+            document.getElementById('mediumButton').style.backgroundColor = 'black';
+            document.getElementById('hardButton').style.backgroundColor = 'white';
+        }
+    }
+
     checkWin()
     {
+        let isAnyWinner = 'none';
         for(let i = 0; i < 7; i++)
         {
-            let isAnyWinner = this.columns[i].statusCheck();
+            isAnyWinner = this.columns[i].checkVertical();
             if(isAnyWinner !== 'none')
             {
                 this.isOver = true;
-                console.log(isAnyWinner);
+                return;
             }
         }
+
+        isAnyWinner = this.checkHorizontal();
+        if(isAnyWinner !== 'none')
+        {
+            this.isOver = true;
+            return;
+        }
+
+        isAnyWinner = this.checkDiagonal();
+        if(isAnyWinner !== 'none')
+        {
+            this.isOver = true;
+            return;
+        }
+    }
+
+    checkHorizontal()
+    {
+        for(let i = 0; i < 6; i++)
+        {
+            let currentPl = 'none';
+            let score = 0;
+            for(let j = 0; j < 7; j++)
+            {
+                if(this.columns[j].blocks[i].usedBy === currentPl)
+                {
+                    score++;
+                }
+                else
+                {
+                    score = 1;
+                    currentPl = this.columns[j].blocks[i].usedBy;
+                }
+
+                if(score >= 4 && currentPl !== 'none')
+                {
+                    return currentPl;
+                }
+            }
+        }
+
+        return 'none';
+    }
+
+    checkDiagonal()
+    {
+        return 'none';
+    }
+
+    resetBoard()
+    {
+        this.isOver = false;
+
     }
 
     render()

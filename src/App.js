@@ -41,6 +41,7 @@ function App() {
 
       <div id='gameDiv' className='gameRender'>
         <p className='centeredText' id='welcomeText'> Welcome to the game {player.getName()}! </p>
+        {board.renderDifficultySelection}
         {board.render()}
       </div>
     </div>

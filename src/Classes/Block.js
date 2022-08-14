@@ -20,6 +20,12 @@ class Block {
         this.usedBy = 'opponent';
         document.getElementById(this.id).style.backgroundColor = 'red';
     }
+
+    reset = () =>
+    {
+        this.isUsed = false;
+        this.usedBy = 'none';
+    }
 }
 
 export default Block;

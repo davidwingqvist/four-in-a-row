@@ -3,6 +3,7 @@ class Player {
     {
         this.turn = true;
         this.name = '';
+        this.score = 0;
     }
 
     setName(name)

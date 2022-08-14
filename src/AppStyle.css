@@ -69,3 +69,48 @@
     top: 0;
     z-index: -1;
 }
+
+.selectionArea {
+    width: 100%;
+    height: 15%;
+    position: fixed;
+    left: 0%;
+    top: 12%;
+}
+
+.selectionButtons {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    float: left;
+    color: rgb(118, 103, 4);
+    width: 20%;
+    height: 15%;
+    display: block;
+    background-color: black;
+    border-color: gray;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-weight: 300px;
+    font-size: 32px;
+}
+
+.buttonSelected {
+    float: left;
+    color: rgb(118, 103, 4);
+    width: 20%;
+    height: 15%;
+    display: block;
+    background-color: white;
+    border-color: gray;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-weight: 300px;
+    font-size: 32px;
+}

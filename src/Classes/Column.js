@@ -39,7 +39,7 @@ class Column
         }
     }
 
-    statusCheck = () =>
+    checkVertical = () =>
     {
         let current = 'none';
         let currentScore = 0;
@@ -62,6 +62,14 @@ class Column
         }
 
         return 'none';
+    }
+
+    resetColumn = () =>
+    {
+        for(let i = 0; i < this.blocks.length; i++)
+        {
+            this.blocks[i].reset();
+        }
     }
 }
 

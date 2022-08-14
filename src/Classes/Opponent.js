@@ -4,12 +4,17 @@ class Opponent {
         this.turn = false;
         this.board = board;
         this.name = 'opponent';
+        this.difficulty = 0;
     }
 
     makeMove = () =>
     {
-        const randomColumn = Math.floor(Math.random() * 7);
-        this.board.columns[randomColumn].opponentPress();
+        // Easy difficulty
+        if(this.difficulty === 0)
+        {
+            const randomColumn = Math.floor(Math.random() * 7);
+            this.board.columns[randomColumn].opponentPress();
+        }
     }
 }
 
