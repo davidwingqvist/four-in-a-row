@@ -112,6 +112,9 @@ class Board {
 
     onDifficultSelect(diff)
     {
+        if(this.opponent.difficulty !== diff)
+            this.resetBoard();
+
         this.opponent.difficulty = diff;
         if(diff === 0)
         {
@@ -197,12 +200,20 @@ class Board {
     resetBoard()
     {
         this.isOver = false;
+        for(let i = 0; i < this.columns.length; i++)
+        {
 
+        }
     }
 
     render()
     {
         return this.renderBoard
+    }
+
+    renderWinScreen()
+    {
+        
     }
 }
 

@@ -6,6 +6,7 @@ class Column
     {
         this.id = id;
         this.blocks = [];
+        this.level = 0;
 
         for(let i = 1; i < 7; i++)
         {
@@ -20,6 +21,7 @@ class Column
         {
             if(this.blocks[i].isUsed === false)
             {
+                this.level < i ? this.level = i : this.level = this.level;
                 this.blocks[i].setToPlayer();
                 break;
             }
@@ -33,10 +35,36 @@ class Column
         {
             if(this.blocks[i].isUsed === false)
             {
+                this.level < i ? this.level = i : this.level = this.level;
                 this.blocks[i].setToOpponent();
-                break;
+                return i;
             }
         }
+    }
+
+    checkAlmostWin = () =>
+    {
+        let current = 'none';
+        let currentScore = 0;
+        for(let i = this.blocks.length - 1; i >= 0; i--)
+        {
+            if(this.blocks[i].usedBy === current)
+            {
+                currentScore++;
+            }
+            else
+            {
+                current = this.blocks[i].usedBy;
+                currentScore = 1;
+            }
+
+            if(current !== 'none' && currentScore >= 3)
+            {
+                return current;
+            }
+        }
+
+        return 'none';
     }
 
     checkVertical = () =>
